@@ -10,7 +10,6 @@ const IMAGE_TYPES = /\.(png|jpe?g|gif|svg)$/i;
 
 const common = {
   output: {
-    // the build folder to output bundles and assets in.
     path: PATHS.build,
     // the filename template for entry chunks
     filename: '[name].js',
@@ -24,10 +23,27 @@ const common = {
   },
   module: {
     rules: [
-      // Help webpack in understanding CSS files imported in .js files
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  require('autoprefixer'),
+                ],
+              },
+            },
+          },
+        ],
       },
       // Check for images imported in .js files and
       {
@@ -45,6 +61,7 @@ const common = {
     ],
   },
   plugins: [
+
     // Copy static assets from `public` folder to `build` folder
     new CopyWebpackPlugin({
       patterns: [

@@ -6,8 +6,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin'); // Importing the plugi
 const common = require('./webpack.common.js');
 const PATHS = require('./paths');
 
-console.log(PATHS.src + '/app/features/popup/popup.js');
-
 const config = (env, argv) =>
   merge(common, {
     entry: {

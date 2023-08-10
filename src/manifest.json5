@@ -1,4 +1,3 @@
-// https://developer.chrome.com/docs/extensions/mv3/devguide/
 {
   "manifest_version": 3,
   "name": "MarkMate AI",
@@ -17,11 +16,11 @@
     "default_title": "Bookmark Manager.ai",
     "default_popup": "popup.html"
   },
-  "permissions": [
-    "storage",
-    "bookmarks",
-    "activeTab"
-  ],
+//  "permissions": [
+//    "storage",
+//    "bookmarks",
+//    "activeTab"
+//  ],
   // https://developer.chrome.com/docs/extensions/mv3/manifest/content_scripts/
   "content_scripts": [
     {
@@ -48,5 +47,5 @@
     }
   },
 
-  $schema: "config/chrome-manifest.json"
+  $schema: "https://json.schemastore.org/chrome-manifest.json"
 }
