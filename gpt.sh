@@ -202,7 +202,8 @@ display_parameters
 read_gitignore
 
 # Start scanning
-echo "#GPT_INFO: root path is $ROOT_PATH" >"$OUTPUT_FILE"
+tree -a -I .git --gitignore "$ROOT_PATH" > "$OUTPUT_FILE"
+echo -e "\n#GPT_INFO: root path is $ROOT_PATH" >>"$OUTPUT_FILE"
 scan_dir "$ROOT_PATH" ""
 
 echo "You can open the file with the following command:"

@@ -50,7 +50,7 @@ const common = {
       patterns: [
         {
           from: '**/*',
-          context: 'public',
+          context: 'src/assets',
         },
       ],
     }),

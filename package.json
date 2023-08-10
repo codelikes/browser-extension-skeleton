@@ -4,13 +4,13 @@
   "description": "My Chrome Extension",
   "private": true,
   "scripts": {
-    "clear": "rm -rf build/*",
-    "watch": "npm run clear && webpack --mode=development --watch --config config/webpack.config.js",
-    "build": "npm run clear && webpack --mode=production --config config/webpack.config.js",
-    "pack": "node pack.js",
-    "repack": "npm run build && npm run pack",
-    "format": "prettier --write --ignore-unknown \"{config,public,src}/**/*.{html,css,js,ts,json}\"",
-    "gpt-helper:generate": "./gpt.sh -e \"js,json5,ts\" ."
+    "build": "npm run build:clear && webpack --mode=production --config src/config/webpack.config.js",
+    "build:clear": "rm -rf build/*",
+    "build:watch": "npm run build:clear && webpack --mode=development --watch --config src/config/webpack.config.js",
+    "build:pack": "node pack.js",
+    "build:repack": "npm run build && npm run build:pack",
+    "format": "prettier --write --ignore-unknown \"src/**/*.{html,css,js,ts,json}\"",
+    "gpt-helper:generate": "./gpt.sh -e \"js,json5,ts\" ./"
   },
   "devDependencies": {
     "adm-zip": "^0.5.10",
