@@ -1,0 +1,12 @@
+stages:
+  - build
+
+build_job:
+  image: node:16
+  stage: build
+  script:
+    - npm install
+    - npm test
+    - npm run build
+  only:
+    - develop

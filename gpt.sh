@@ -11,7 +11,7 @@ MAX_FILE_SIZE=15 # in KB
 OUTPUT_FILE="./gpt-content-output.txt"
 ROOT_PATH="./"
 VERBOSE=false
-DEFAULT_LANG_PRESET=js
+DEFAULT_LANG_PRESET="js"
 
 # Log function for verbose mode
 log() {

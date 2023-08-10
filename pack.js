@@ -1,25 +1,18 @@
-const { readFileSync, existsSync, mkdirSync } = require('fs');
-const { parse, resolve } = require('path');
+const { existsSync, mkdirSync, readFileSync } = require('fs');
 const AdmZip = require('adm-zip');
+const kebabCase = require('lodash/kebabCase');
+const json5 = require('json5');
+const { aliases } = require('./src/config/aliases');
+const manifest = json5.parse(readFileSync(aliases.build + '/manifest.json').toString());
+const filename = `${kebabCase(manifest.name)}-v${manifest.version}.zip`;
 
-try {
-  const { base } = parse(__dirname);
-  const { version } = JSON.parse(
-    readFileSync(resolve(__dirname, 'build', 'manifest.json'), 'utf8')
-  );
+const zip = new AdmZip();
+zip.addLocalFolder('build');
 
-  const outdir = 'release';
-  const filename = `${base}-v${version}.zip`;
-  const zip = new AdmZip();
-  zip.addLocalFolder('build');
-  if (!existsSync(outdir)) {
-    mkdirSync(outdir);
-  }
-  zip.writeZip(`${outdir}/${filename}`);
-
-  console.log(
-    `Success! Created a ${filename} file under ${outdir} directory. You can upload this file to web store.`
-  );
-} catch (e) {
-  console.error('Error! Failed to generate a zip file.');
+if (!existsSync(aliases.release)) {
+  mkdirSync(aliases.release);
 }
+
+zip.writeZip(`${aliases.release}/${filename}`);
+
+console.log(`Success! Created a ${filename} file under ${aliases.release} directory. You can upload this file to web store.`);

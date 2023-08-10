@@ -1,28 +1,30 @@
-'use strict';
-
 const { merge } = require('webpack-merge');
+const copyPlugin = require('copy-webpack-plugin');
 const json5 = require('json5');
-const CopyWebpackPlugin = require('copy-webpack-plugin'); // Importing the plugin
-const common = require('./webpack.common.js');
-const PATHS = require('./paths');
+const { aliases } = require('./aliases.js');
+const commonConfig = require('./webpack.common.js');
+const { getBuildInfo } = require('../app/global/utils');
 
-const config = (env, argv) =>
-  merge(common, {
+const buildInfo = getBuildInfo();
+
+const webpackConfig = (env, argv) => {
+  const configs = merge(commonConfig, {
     entry: {
-      popup: PATHS.src + '/app/features/popup/popup.js',
-      content: PATHS.src + '/app/global/content.js',
-      background: PATHS.src + '/app/global/background.js',
+      popup: aliases.features + '/popup/popup.js',
+      content: aliases.global + '/content.js',
+      background: aliases.global + '/background.js',
     },
     devtool: argv.mode === 'production' ? false : 'source-map',
     plugins: [
-      // Copy manifest.json5 to manifest.json
-      new CopyWebpackPlugin({
+      new copyPlugin({
         patterns: [
           {
-            from: PATHS.src + '/manifest.json5',
+            from: aliases.src + '/manifest.json5',
             to: 'manifest.json',
             transform(content) {
-              const manifest = json5.parse(content.toString());
+              const manifest = Object.assign(json5.parse(content.toString()), {
+                version: buildInfo.version,
+              });
               delete manifest.$schema;
 
               return JSON.stringify(manifest);
@@ -33,4 +35,7 @@ const config = (env, argv) =>
     ],
   });
 
-module.exports = config;
+  return configs;
+};
+
+module.exports = webpackConfig;

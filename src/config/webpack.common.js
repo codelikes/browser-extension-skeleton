@@ -2,16 +2,13 @@
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-const PATHS = require('./paths');
-
-// used in the module rules and in the stats exlude list
+const autoprefixer = require('autoprefixer');
+const aliases = require('./aliases').aliases;
 const IMAGE_TYPES = /\.(png|jpe?g|gif|svg)$/i;
 
 const common = {
   output: {
-    path: PATHS.build,
-    // the filename template for entry chunks
+    path: aliases.build,
     filename: '[name].js',
   },
   stats: {
@@ -24,28 +21,44 @@ const common = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
+        test: /\.json5$/i,
+        loader: 'json5-loader',
+        type: 'javascript/auto',
       },
       {
-        test: /\.css$/,
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {
+          minimize: false,
+        },
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
+          'sass-loader',
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: [
-                  require('autoprefixer'),
-                ],
+                plugins: [autoprefixer],
               },
             },
           },
         ],
       },
-      // Check for images imported in .js files and
+      {
+        test: /\.svg$/i,
+        use: ['to-string-loader', 'html-loader'],
+      },
       {
         test: IMAGE_TYPES,
         use: [
@@ -61,8 +74,6 @@ const common = {
     ],
   },
   plugins: [
-
-    // Copy static assets from `public` folder to `build` folder
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -71,10 +82,7 @@ const common = {
         },
       ],
     }),
-    // Extract CSS into separate files
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
+    new MiniCssExtractPlugin(),
   ],
 };
 

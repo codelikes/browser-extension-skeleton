@@ -1,5 +1,5 @@
 'use strict';
 
-chrome.commands.onCommand.addListener((command, _) => {
+chrome.commands.onCommand.addListener((command) => {
   console.log('Command:', command);
 });

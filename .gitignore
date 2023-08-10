@@ -5,3 +5,4 @@ npm-debug.log*
 /release
 .idea/
 gpt-content-output.txt
+.env
