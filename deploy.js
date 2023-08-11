@@ -4,7 +4,6 @@ require('dotenv/config');
 const { exec } = require('child_process');
 const { getBuildInfo } = require('./src/app/global/utils');
 
-
 (async () => {
   const config = {
     extensionId: process.env.GOOGLE_EXTENSION_ID,
@@ -30,9 +29,9 @@ const { getBuildInfo } = require('./src/app/global/utils');
       if (error) {
         console.error('An error occurred while deploying the extension:');
         if (stderr) {
-          console.error(stderr); // Выводим детали ошибки из stderr
+          console.error(stderr);
         } else {
-          console.error(error); // Если stderr пуст, выводим стандартное сообщение об ошибке
+          console.error(error);
         }
         return;
       }

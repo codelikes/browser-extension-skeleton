@@ -1,3 +1,5 @@
+'use strict';
+
 const { existsSync, mkdirSync, readFileSync } = require('fs');
 const AdmZip = require('adm-zip');
 const kebabCase = require('lodash/kebabCase');

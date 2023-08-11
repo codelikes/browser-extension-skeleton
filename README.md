@@ -1,5 +1,7 @@
 # MarkMate AI Browser Extension
 
+MarkMate AI, AI-powered Bookmark Manager: Organize, structure, and find your bookmarks effortlessly.
+
 ### Development Scripts
 
 | Command                       | Description                                                     |

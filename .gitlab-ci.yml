@@ -1,11 +1,19 @@
 stages:
   - build
 
+variables:
+  CACHE_DIR: "$CI_PROJECT_DIR/.cache"
+
+cache:
+  paths:
+    - .cache/
+    - node_modules/
+
 build_job:
   image: node:16
   stage: build
   script:
-    - npm install
+    - npm ci --cache .cache/npm
     - npm test
     - npm run build
   only:
