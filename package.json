@@ -18,8 +18,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "prettier": "prettier --write --ignore-unknown \"src/**/*.{html,css,js,ts,json}\" \"tests/**/*.{html,css,js,ts,json,md}\" \"*.{html,css,js,ts,json,md}\"",
-    "lint": "eslint --max-warnings=0 --ignore-path .gitignore",
-    "lint:fix": "eslint --fix --max-warnings=0 --ignore-path .gitignore",
+    "lint": "npx eslint \"src/**/*.{js,ts}\" \"tests/**/*.{js,ts}\" \"*.js\" --max-warnings=0 --ignore-path .gitignore",
+    "lint:fix": "npx eslint \"src/**/*.{js,ts}\" \"tests/**/*.{js,ts}\" \"*.js\" --max-warnings=0 --ignore-path .gitignore",
     "update-dependencies": "npx npm-check-updates --upgrade",
     "gpt-helper": "./gpt.sh -e \"js,json5,ts\" ./"
   },
