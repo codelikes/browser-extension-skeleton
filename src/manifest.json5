@@ -1,47 +1,48 @@
 {
   manifest_version: 3,
-  name: 'MarkMate AI',
+  name: 'MarkMate.AI',
   version: '0.0.0',
-  description: 'AI-powered Bookmark Manager: Organize, structure, and find your bookmarks effortlessly',
+  description: 'MarkMate.AI is your Bookmark Manager. Organize, structure, and find your bookmarks effortlessly',
   icons: {
     '16': 'icons/icon_16.png',
     '32': 'icons/icon_32.png',
     '48': 'icons/icon_48.png',
-    '128': 'icons/icon_128.png',
+    '128': 'icons/icon_128.png'
   },
   background: {
-    service_worker: 'background.js',
+    service_worker: 'background.js'
   },
   action: {
     default_title: 'Bookmark Manager.ai',
-    default_popup: 'popup.html',
+    default_popup: 'popup.html'
   },
-  //  "permissions": [
-  //    "storage",
-  //    "bookmarks",
-  //    "activeTab"
-  //  ],
+    "permissions": [
+      "storage",
+      "bookmarks",
+      "activeTab"
+    ],
   // https://developer.chrome.com/docs/extensions/mv3/manifest/content_scripts/
   content_scripts: [
     {
       matches: ['<all_urls>'],
       run_at: 'document_idle',
-      js: ['content.js'],
-    },
+      js: [
+        'content.js'
+      ]
+    }
   ],
   // https://developer.chrome.com/docs/extensions/mv3/override/
   chrome_url_overrides: {
-    bookmarks: 'bookmarks.html',
+    bookmarks: 'bookmarks.html'
   },
   commands: {
     'bookmark-open-manager': {
       description: 'Edit bookmark | Bookmark Manager.ai',
       suggested_key: {
         default: 'Ctrl+D',
-        mac: 'MacCtrl+D',
-      },
-    },
+        mac: 'MacCtrl+D'
+      }
+    }
   },
-
-  $schema: 'https://json.schemastore.org/chrome-manifest.json',
+  $schema: 'https://json.schemastore.org/chrome-manifest.json'
 }
