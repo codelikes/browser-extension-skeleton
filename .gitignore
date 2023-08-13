@@ -6,3 +6,4 @@ npm-debug.log*
 .idea/
 gpt-content-output.txt
 .env
+package-lock.json

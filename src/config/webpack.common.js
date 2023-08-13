@@ -20,11 +20,13 @@ const common = {
   },
   module: {
     rules: [
+      // JSON5 loader
       {
         test: /\.json5$/i,
         loader: 'json5-loader',
         type: 'javascript/auto',
       },
+      // HTML loader
       {
         test: /\.html$/i,
         loader: 'html-loader',
@@ -32,13 +34,14 @@ const common = {
           minimize: false,
         },
       },
+      // Babel loader
       {
         test: /\.js$/,
-        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
         },
       },
+      // CSS loader
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
@@ -55,10 +58,12 @@ const common = {
           },
         ],
       },
+      // SVG loader
       {
         test: /\.svg$/i,
         use: ['to-string-loader', 'html-loader'],
       },
+      // Image loader
       {
         test: IMAGE_TYPES,
         use: [
