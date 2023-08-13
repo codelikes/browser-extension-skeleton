@@ -33,3 +33,9 @@ This project is open source and available under the MIT License.
 ---
 
 Feel free to modify and use this script as needed for your projects. If you encounter any issues or have suggestions for improvements, please let us know.
+
+### todo:
+
+- https://github.com/GoogleChrome/chrome-extensions-samples примеры расширений от гугла
+- https://developer.chrome.com/docs/webstore/publish/#publishing-to-test-accounts инструкция по публикации расширения
+-

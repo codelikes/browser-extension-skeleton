@@ -10,16 +10,14 @@
     '128': 'icons/icon_128.png'
   },
   background: {
-    service_worker: 'background.js'
+    service_worker: 'service-worker.js'
   },
   action: {
     default_title: 'Bookmark Manager.ai',
     default_popup: 'popup.html'
   },
     "permissions": [
-      "storage",
-      "bookmarks",
-      "activeTab"
+      "bookmarks"
     ],
   // https://developer.chrome.com/docs/extensions/mv3/manifest/content_scripts/
   content_scripts: [
