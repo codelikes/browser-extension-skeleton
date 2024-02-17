@@ -1,7 +1,21 @@
 'use strict';
 
-// styles
 import './popup.scss';
+import { getLogger } from '../../global/services/logger-factory';
+import { BusFactory } from '../../global/services/bus';
+import { backgroundBus$ } from '../background/background';
+
+export const popupBus$ = BusFactory('popup');
+
+const logger = getLogger('popup');
+
+popupBus$.add('pong', (value) => {
+  logger.log('popup:pong - was called', value);
+
+  return {
+    message: 'Pong from popup.js',
+  };
+});
 
 const render = (content) => {
   const popup = document.querySelector('#popup');
@@ -13,14 +27,16 @@ const render = (content) => {
 const popup = () => {
   const popup = render(`
     <div class="popup">
-      <button class="button h-bg-grey h-font-white" id="buttonEl">Ping</button>
+      <button class="button h-bg-grey h-font-white" id="pingButton">Ping</button>
     </div>
   `);
 
-  popup.querySelector('#buttonEl').addEventListener('click', () => {
-    const pongMessage = 'Pong from popup.js';
-    console.log(pongMessage);
-    alert(pongMessage);
+  popup.querySelector('#pingButton').addEventListener('click', async () => {
+    const result = await backgroundBus$.call('background:ping', {
+      ping: 'Ping from popup.js',
+    });
+
+    logger.log('Result of background:ping', result);
   });
 };
 

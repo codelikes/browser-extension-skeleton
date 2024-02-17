@@ -20,6 +20,7 @@
     "update-dependencies": "npx npm-check-updates --upgrade"
   },
   "dependencies": {
+    "@davestewart/extension-bus": "^1.4.1",
     "peerjs": "^1.5.2"
   },
   "devDependencies": {

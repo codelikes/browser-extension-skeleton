@@ -51,7 +51,7 @@ npm run watch
 │  ├── app
 │  │  └── features
 │  │      ├── background
-│  │      │  └── service-worker.js # Service worker background script
+│  │      │  └── background.js # Service worker background script
 │  │      ├── content
 │  │      │  └── content.js # Content script
 │  │      └── popup # Popup page

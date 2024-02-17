@@ -10,7 +10,7 @@ const webpackConfig = (env, argv) => {
     entry: {
       popup: aliases.features + '/popup/popup.js',
       content: aliases.features + '/content/content.js',
-      ['service-worker']: aliases.features + '/background/service-worker.js',
+      background: aliases.features + '/background/background.js',
     },
     devtool: argv.mode === 'production' ? false : 'source-map',
     plugins: [
