@@ -85,6 +85,10 @@ const common = {
           from: '**/*',
           context: 'src/assets',
         },
+        {
+          from: 'src/**/*.html',
+          to: '[name].html',
+        },
       ],
     }),
     new MiniCssExtractPlugin(),

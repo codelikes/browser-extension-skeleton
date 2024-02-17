@@ -4,7 +4,7 @@ const { existsSync, mkdirSync, readFileSync } = require('fs');
 const AdmZip = require('adm-zip');
 const kebabCase = require('lodash/kebabCase');
 const json5 = require('json5');
-const { aliases } = require('../../../config/aliases');
+const { aliases } = require('./aliases');
 const manifest = json5.parse(readFileSync(aliases.build + '/manifest.json').toString());
 const filename = `${kebabCase(manifest.name)}-v${manifest.version}.zip`;
 

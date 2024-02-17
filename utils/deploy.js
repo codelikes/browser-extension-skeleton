@@ -2,7 +2,7 @@
 
 require('dotenv/config');
 const { exec } = require('child_process');
-const { getBuildInfo } = require('../utils');
+const { getBuildInfo } = require('./utils');
 
 (async () => {
   const config = {

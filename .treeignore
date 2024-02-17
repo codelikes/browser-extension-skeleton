@@ -1,0 +1,8 @@
+node_modules
+dist
+README.md
+build
+package-lock.json
+LICENSE
+babel.config.json
+jest.config.json

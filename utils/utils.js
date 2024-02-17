@@ -1,7 +1,9 @@
+'use strict';
+
 const kebabCase = require('lodash/kebabCase');
-const { aliases } = require('../../config/aliases');
 const fs = require('fs');
 const json5 = require('json5');
+const { aliases } = require('./aliases');
 const packageJson = require(`${aliases.root}/package.json`);
 
 const getBuildInfo = () => {
@@ -11,9 +13,12 @@ const getBuildInfo = () => {
 
   return {
     version: packageJson.version,
+    description: packageJson.description,
     buildPath: getBuildInfo,
     releasePath,
   };
 };
 
-module.exports = { getBuildInfo };
+module.exports = {
+  buildInfo: getBuildInfo(),
+};

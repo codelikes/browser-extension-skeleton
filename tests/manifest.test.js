@@ -1,9 +1,10 @@
 import { matchersWithOptions } from 'jest-json-schema';
-import * as schema from '../src/config/$schema.json';
+import * as schema from './$schema.json';
 import { readFileSync } from 'fs';
 import json5 from 'json5';
 
-const manifest = json5.parse(readFileSync('./src/manifest.json5', 'utf8'));
+const rawManifestJson5 = readFileSync('./src/manifest.json5');
+const parsedManifest = json5.parse(rawManifestJson5.toString());
 
 expect.extend(
   matchersWithOptions({
@@ -12,12 +13,12 @@ expect.extend(
   }),
 );
 
-describe('manifest.json', () => {
-  it('validate manifest schema file', () => {
+describe('Manifest json file', () => {
+  it('Described scheme is valid', () => {
     expect(schema).toBeValidSchema();
   });
 
-  it('validate manifest.json5 with schema', () => {
-    expect(manifest).toMatchSchema(schema);
+  it('Manifest file is valid', () => {
+    expect(parsedManifest).toMatchSchema(schema);
   });
 });

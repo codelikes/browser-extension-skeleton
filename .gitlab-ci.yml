@@ -17,4 +17,4 @@ build_job:
     - npm test
     - npm run build
   only:
-    - develop
+    - master
